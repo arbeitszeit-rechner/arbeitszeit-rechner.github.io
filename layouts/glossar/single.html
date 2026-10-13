@@ -1,0 +1,32 @@
+{{ define "main" }}
+<div class="container container--main">
+  {{ partial "breadcrumbs.html" . }}
+  <article class="prose glossary-entry">
+    <p class="eyebrow">Glossar</p>
+    <h1>{{ .Params.h1 | default .Title }}</h1>
+    {{ partial "byline.html" . }}
+    {{ .Content }}
+    {{ with site.GetPage "/glossar" }}
+    <p class="back-links">
+      <a href="{{ .RelPermalink }}">Zurück zum Glossar</a>
+      · <a href="{{ site.Home.RelPermalink }}">Arbeitszeit Rechner</a>
+    </p>
+    {{ end }}
+  </article>
+
+  {{ with .Params.kategorie }}
+    {{ $cat := . }}
+    {{ $related := where (where $.CurrentSection.Pages "Params.kategorie" $cat) "Permalink" "ne" $.Permalink }}
+    {{ with first 4 $related }}
+    <section class="related" aria-labelledby="verwandt-titel">
+      <h2 id="verwandt-titel">Weitere Begriffe: {{ $cat }}</h2>
+      <ul class="chips">
+        {{ range . }}<li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>{{ end }}
+      </ul>
+    </section>
+    {{ end }}
+  {{ end }}
+
+  {{ partial "ads/slot.html" (dict "page" . "name" "glossar-ende" "size" "banner") }}
+</div>
+{{ end }}

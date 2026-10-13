@@ -1,0 +1,21 @@
+{{ define "main" }}
+<div class="container container--main">
+  <header class="page-header">
+    <h1>{{ .Params.h1 | default .Title }}</h1>
+    {{ with .Params.lead }}<p class="lead">{{ . }}</p>{{ end }}
+  </header>
+
+  {{ partial "calculator.html" . }}
+
+  {{ partial "ads/slot.html" (dict "page" . "name" "home-nach-rechner" "size" "rect") }}
+
+  <article class="prose" id="artikel">
+    {{ partial "byline.html" . }}
+    {{ .Content }}
+  </article>
+
+  {{ partial "glossary-links.html" . }}
+
+  {{ partial "ads/slot.html" (dict "page" . "name" "home-ende" "size" "banner") }}
+</div>
+{{ end }}

@@ -1,0 +1,28 @@
+<footer class="site-footer">
+  <div class="container container--wide footer-grid">
+    <div>
+      <p class="footer-title">{{ site.Title }}</p>
+      <p>Kostenloser Rechner für Arbeitszeit, Pausen und Überstunden mit einem Glossar zu den wichtigsten Begriffen.</p>
+    </div>
+    <nav aria-label="Seiten">
+      <p class="footer-title">Seiten</p>
+      <ul>
+        {{- range site.Menus.main }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+    </nav>
+    <nav aria-label="Rechtliches">
+      <p class="footer-title">Rechtliches</p>
+      <ul>
+        {{- range site.Menus.footer }}
+        <li><a href="{{ .URL }}">{{ .Name }}</a></li>
+        {{- end }}
+      </ul>
+    </nav>
+  </div>
+  <div class="container container--wide footer-note">
+    <p>Alle Angaben ohne Gewähr. Die Inhalte sind allgemeine Informationen und ersetzen keine Rechts-, Steuer- oder Tarifberatung.</p>
+    <p>© {{ now.Year }} {{ site.Title }}</p>
+  </div>
+</footer>

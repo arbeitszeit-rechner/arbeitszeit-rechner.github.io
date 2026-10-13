@@ -1,0 +1,96 @@
+# Hugo-Konfiguration: Arbeitszeit Rechner
+# Benötigt Hugo >= 0.128 (die normale Version genügt, "extended" ist nicht nötig).
+
+baseURL = "https://arbeitszeit-rechner.github.io/"
+title = "Arbeitszeit Rechner"
+languageCode = "de-DE"
+defaultContentLanguage = "de"
+timeZone = "Europe/Berlin"
+
+enableRobotsTXT = true
+enableEmoji = false
+enableGitInfo = false
+disableHugoGeneratorInject = true
+pluralizeListTitles = false
+
+# Keine RSS-Feeds, keine Taxonomien: reduziert Seiten ohne eigenen Suchintent.
+disableKinds = ["RSS", "taxonomy", "term"]
+
+[taxonomies]
+
+[module]
+  [module.hugoVersion]
+    min = "0.128.0"
+
+[frontmatter]
+  lastmod = ["lastmod", "date", "publishDate"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = false
+  [markup.tableOfContents]
+    startLevel = 2
+    endLevel = 3
+
+[minify]
+  minifyOutput = true
+  [minify.tdewolff]
+    [minify.tdewolff.html]
+      keepWhitespace = true
+
+[sitemap]
+  changefreq = "monthly"
+  priority = 0.5
+  filename = "sitemap.xml"
+
+[params]
+  # Standard-Beschreibung (Fallback). Muss 150-155 Zeichen lang sein.
+  description = "Kostenloser Arbeitszeit Rechner: Arbeitsstunden, Pausen und Überstunden berechnen. Dazu ein Glossar mit klaren Erklärungen zu Begriffen der Arbeitszeit."
+  htmlLang = "de-DE"
+  locale = "de_DE"
+  themeColor = "#1e40af"
+
+  # Kontaktdaten: bewusst leer. Nur verifizierte Angaben eintragen.
+  [params.contact]
+    email = ""
+
+  # Werbung (Google AdSense)
+  #   mode = "off"         -> keine Werbeplätze, kein reservierter Platz
+  #   mode = "placeholder" -> beschriftete, reservierte Platzhalter (Layout-Test)
+  #   mode = "live"        -> AdSense-Code; erst nach Einwilligungs-Management (CMP) aktivieren!
+  [params.ads]
+    mode = "placeholder"
+    client = ""
+    [params.ads.slots]
+      # Zuordnung Platzname -> AdSense-Slot-ID, z. B. "home-nach-rechner" = "1234567890"
+
+[[menus.main]]
+  name = "Rechner"
+  pageRef = "/"
+  weight = 10
+
+[[menus.main]]
+  name = "Glossar"
+  pageRef = "/glossar"
+  weight = 20
+
+[[menus.main]]
+  name = "Über uns"
+  pageRef = "/ueber-uns"
+  weight = 30
+
+[[menus.main]]
+  name = "Kontakt"
+  pageRef = "/kontakt"
+  weight = 40
+
+[[menus.footer]]
+  name = "Datenschutzerklärung"
+  pageRef = "/datenschutz"
+  weight = 10
+
+[[menus.footer]]
+  name = "Nutzungsbedingungen"
+  pageRef = "/nutzungsbedingungen"
+  weight = 20

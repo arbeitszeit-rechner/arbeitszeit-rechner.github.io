@@ -1,0 +1,18 @@
+{{ define "main" }}
+<div class="container container--main">
+  {{ partial "breadcrumbs.html" . }}
+  <article class="prose">
+    <h1>{{ .Params.h1 | default .Title }}</h1>
+    {{ with .Params.lead }}<p class="lead">{{ . }}</p>{{ end }}
+    {{ if .Params.template_notice }}
+    <aside class="notice" role="note">
+      <strong>Entwurf:</strong> Dieser Text ist eine Vorlage und muss vor der Veröffentlichung rechtlich geprüft und mit den tatsächlichen Angaben ergänzt werden.
+    </aside>
+    {{ end }}
+    {{ partial "byline.html" . }}
+    {{ .Content }}
+    {{ if .Params.show_author_profile }}{{ partial "author-profile.html" . }}{{ end }}
+  </article>
+  {{ partial "ads/slot.html" (dict "page" . "name" "seitenende" "size" "banner") }}
+</div>
+{{ end }}

@@ -1,0 +1,9 @@
+{{ $js := resources.Get "js/main.js" | minify | fingerprint }}
+<script src="{{ $js.RelPermalink }}" defer></script>
+{{- /*
+  AdSense nur im Modus "live" laden. Vorher zwingend ein Einwilligungs-Management (CMP) einbinden,
+  da das Skript sonst ohne Einwilligung Daten übertragen würde (siehe KURANG.md).
+*/ -}}
+{{ if and (eq site.Params.ads.mode "live") site.Params.ads.client }}
+<script async src="https://pagead2.googlesyndication.com/pagead/js/adsbygoogle.js?client={{ site.Params.ads.client }}" crossorigin="anonymous"></script>
+{{ end }}

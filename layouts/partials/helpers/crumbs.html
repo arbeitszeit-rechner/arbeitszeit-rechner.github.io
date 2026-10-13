@@ -1,0 +1,12 @@
+{{- /* Liefert die Brotkrumen als Liste von {name, url}. Startseite: leer. */ -}}
+{{- $c := slice -}}
+{{- if not .IsHome -}}
+  {{- $c = $c | append (dict "name" "Startseite" "url" site.Home.Permalink) -}}
+  {{- range .Ancestors.Reverse -}}
+    {{- if not .IsHome -}}
+      {{- $c = $c | append (dict "name" .LinkTitle "url" .Permalink) -}}
+    {{- end -}}
+  {{- end -}}
+  {{- $c = $c | append (dict "name" .LinkTitle "url" .Permalink) -}}
+{{- end -}}
+{{- return $c -}}

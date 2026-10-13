@@ -1,0 +1,22 @@
+{{- /* Title, Description, Canonical, Robots, Open Graph. Kein Seitennamen-Suffix im Titel. */ -}}
+{{- $title := .Title -}}
+{{- if eq .Kind "404" }}{{ $title = "Seite nicht gefunden" }}{{ end -}}
+{{- $desc := .Params.description | default site.Params.description -}}
+{{- $n := strings.RuneCount $desc -}}
+{{- if or (lt $n 150) (gt $n 155) -}}
+  {{- warnf "SEO: Meta-Description hat %d Zeichen (Soll 150-155): %s" $n .Permalink -}}
+{{- end -}}
+{{- $noindex := or .Params.noindex (eq .Kind "404") -}}
+<title>{{ $title }}</title>
+<meta name="description" content="{{ $desc }}">
+<meta name="robots" content="{{ if $noindex }}noindex, follow{{ else }}index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1{{ end }}">
+{{ if ne .Kind "404" }}<link rel="canonical" href="{{ .Permalink }}">{{ end }}
+<meta name="theme-color" content="{{ site.Params.themeColor }}">
+{{ with site.Data.author.name }}<meta name="author" content="{{ . }}">{{ end }}
+<meta property="og:site_name" content="{{ site.Title }}">
+<meta property="og:locale" content="{{ site.Params.locale }}">
+<meta property="og:type" content="{{ if or .IsHome (not .Params.show_author) }}website{{ else }}article{{ end }}">
+<meta property="og:title" content="{{ $title }}">
+<meta property="og:description" content="{{ $desc }}">
+{{ if ne .Kind "404" }}<meta property="og:url" content="{{ .Permalink }}">{{ end }}
+<meta name="twitter:card" content="summary">

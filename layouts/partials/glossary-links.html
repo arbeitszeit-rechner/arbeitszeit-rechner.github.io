@@ -1,0 +1,14 @@
+{{- with site.GetPage "/glossar" -}}
+{{- $featured := where .Pages "Params.featured" true -}}
+<section class="topic-links" aria-labelledby="glossar-links-titel">
+  <h2 id="glossar-links-titel">Begriffe rund um die Arbeitszeit</h2>
+  {{- with $featured }}
+  <ul class="chips">
+    {{- range first 12 .ByWeight }}
+    <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+    {{- end }}
+  </ul>
+  {{- end }}
+  <p><a href="{{ .RelPermalink }}">Alle Begriffe im Glossar ansehen</a></p>
+</section>
+{{- end -}}

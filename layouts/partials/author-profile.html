@@ -1,0 +1,12 @@
+{{- /* Wiederverwendbares Autorenprofil aus data/author.yaml. Es werden nur ausgefüllte, verifizierte Felder angezeigt. */ -}}
+{{- $a := site.Data.author -}}
+<section class="author-profile" aria-labelledby="autor-titel">
+  <h2 id="autor-titel">Autorenprofil</h2>
+  {{- if $a.name }}
+  <p><strong>{{ $a.name }}</strong>{{ with $a.jobTitle }}, {{ . }}{{ end }}</p>
+  {{- with $a.description }}<p>{{ . }}</p>{{ end }}
+  {{- with $a.url }}<p><a href="{{ . }}" rel="noopener">Weitere Informationen</a></p>{{ end }}
+  {{- else }}
+  <p>Die Inhalte dieser Website werden redaktionell betreut. Angaben zur verantwortlichen Person werden ergänzt, sobald sie vorliegen.</p>
+  {{- end }}
+</section>

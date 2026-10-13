@@ -1,0 +1,15 @@
+{{/* Fallback für Sektionen ohne eigenes Layout. Das Glossar nutzt layouts/glossar/list.html. */}}
+{{ define "main" }}
+<div class="container container--main">
+  {{ partial "breadcrumbs.html" . }}
+  <article class="prose">
+    <h1>{{ .Params.h1 | default .Title }}</h1>
+    {{ .Content }}
+    <ul>
+      {{ range .Pages.ByLinkTitle }}
+      <li><a href="{{ .RelPermalink }}">{{ .LinkTitle }}</a></li>
+      {{ end }}
+    </ul>
+  </article>
+</div>
+{{ end }}

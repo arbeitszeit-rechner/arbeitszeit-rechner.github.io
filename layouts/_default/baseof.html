@@ -1,0 +1,15 @@
+<!DOCTYPE html>
+<html lang="{{ site.Params.htmlLang }}" class="no-js">
+<head>
+{{ partial "head.html" . }}
+</head>
+<body>
+<a class="skip-link" href="#inhalt">Zum Inhalt springen</a>
+{{ partial "navbar.html" . }}
+<main id="inhalt" tabindex="-1">
+{{ block "main" . }}{{ end }}
+</main>
+{{ partial "footer.html" . }}
+{{ partial "scripts.html" . }}
+</body>
+</html>

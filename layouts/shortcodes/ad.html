@@ -1,0 +1,3 @@
+{{- /* Werbeplatz im Artikel. Aufruf im Markdown mit dem Shortcode "ad", optional mit Platzname als erstem Parameter. */ -}}
+{{- $name := .Get 0 | default "im-artikel" -}}
+{{- partial "ads/slot.html" (dict "page" .Page "name" $name "size" "rect") -}}

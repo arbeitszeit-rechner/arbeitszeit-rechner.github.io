@@ -1,0 +1,7 @@
+{{- /* Liefert den ersten Absatz des Inhalts als Klartext (die "direkte Antwort"). */ -}}
+{{- $out := "" -}}
+{{- with findRE `(?s)<p>.*?</p>` .Content 1 -}}
+  {{- $p := index . 0 | plainify | htmlUnescape -}}
+  {{- $out = strings.Trim $p "\n\r\t " -}}
+{{- end -}}
+{{- return $out -}}

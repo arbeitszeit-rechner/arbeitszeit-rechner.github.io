@@ -1,0 +1,22 @@
+{{- /*
+  Werbeplatz. Parameter: page (Seite), name (Platzname), size ("rect" = 280px, "banner" = 90-100px).
+  Der Platz ist per CSS in der Höhe reserviert (min-height), um Layout-Verschiebungen zu vermeiden.
+  Pro Seite abschaltbar mit front matter: ads: false
+*/ -}}
+{{- $mode := site.Params.ads.mode | default "off" -}}
+{{- $page := .page -}}
+{{- $enabled := true -}}
+{{- if isset $page.Params "ads" }}{{ $enabled = $page.Params.ads }}{{ end -}}
+{{- if and $enabled (ne $mode "off") -}}
+<aside class="ad ad--{{ .size }} ad--{{ $mode }}" aria-label="Werbung">
+  <p class="ad__label">Anzeige</p>
+  <div class="ad__box" data-slot="{{ .name }}">
+    {{- if eq $mode "live" }}
+    <ins class="adsbygoogle" style="display:block" data-ad-client="{{ site.Params.ads.client }}" data-ad-slot="{{ index (site.Params.ads.slots | default dict) .name }}" data-ad-format="auto" data-full-width-responsive="true"></ins>
+    <script>(window.adsbygoogle=window.adsbygoogle||[]).push({});</script>
+    {{- else }}
+    <span>Werbeplatz (Platzhalter)</span>
+    {{- end }}
+  </div>
+</aside>
+{{- end -}}

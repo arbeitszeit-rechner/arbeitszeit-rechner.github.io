@@ -1,0 +1,5 @@
+{{- with site.Params.contact.email -}}
+<p>E-Mail: <a href="mailto:{{ . }}">{{ . }}</a></p>
+{{- else -}}
+<p>Die Kontaktdaten werden ergänzt, sobald die Angaben zum Betreiber der Website vollständig vorliegen.</p>
+{{- end -}}

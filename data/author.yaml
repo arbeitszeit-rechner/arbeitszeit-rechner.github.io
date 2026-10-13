@@ -1,0 +1,9 @@
+# Wiederverwendbares Autorenprofil (genutzt in Byline, Autorenprofil und JSON-LD).
+# Nur verifizierte Angaben eintragen. Leere Felder werden nirgends ausgegeben;
+# solange "name" leer ist, erscheint "Redaktion Arbeitszeit Rechner" und im
+# JSON-LD die Organisation als Autor.
+name: ""
+jobTitle: ""        # nur wenn zutreffend und belegbar
+description: ""     # kurze, verifizierte Beschreibung (keine Qualifikationen erfinden)
+url: ""             # optional: Profil-/Kontaktseite
+sameAs: []          # optional: verifizierte Profil-URLs (z. B. LinkedIn)

@@ -1,0 +1,52 @@
+<section class="calc" id="rechner" aria-labelledby="rechner-titel">
+  <h2 id="rechner-titel">Arbeitszeit berechnen</h2>
+  <form id="calc-form" class="calc__form" novalidate>
+    <div class="field">
+      <label for="calc-start">Arbeitsbeginn</label>
+      <input id="calc-start" name="start" type="time" value="08:00" required>
+    </div>
+    <div class="field">
+      <label for="calc-end">Arbeitsende</label>
+      <input id="calc-end" name="end" type="time" value="16:30" required>
+    </div>
+    <div class="field">
+      <label for="calc-pause">Pause in Minuten</label>
+      <input id="calc-pause" name="pause" type="number" inputmode="numeric" min="0" max="1440" step="1" value="30">
+    </div>
+    <div class="field">
+      <label for="calc-soll">Soll-Arbeitszeit in Stunden (optional)</label>
+      <input id="calc-soll" name="soll" type="number" inputmode="decimal" min="0" max="24" step="0.25" value="8" aria-describedby="calc-soll-hint">
+      <p class="hint" id="calc-soll-hint">Für die Berechnung von Über- oder Minusstunden. Feld leer lassen, wenn nicht benötigt.</p>
+    </div>
+    <div class="calc__actions">
+      <button type="reset" class="btn">Zurücksetzen</button>
+    </div>
+  </form>
+
+  <div class="calc__result" aria-labelledby="ergebnis-titel">
+    <h3 id="ergebnis-titel" class="sr-only">Ergebnis</h3>
+    <dl class="result-grid">
+      <div class="result result--primary">
+        <dt>Nettoarbeitszeit</dt>
+        <dd id="res-net">–</dd>
+      </div>
+      <div class="result">
+        <dt>Dezimalstunden</dt>
+        <dd id="res-dec">–</dd>
+      </div>
+      <div class="result">
+        <dt>Anwesenheit (brutto)</dt>
+        <dd id="res-gross">–</dd>
+      </div>
+      <div class="result">
+        <dt>Über-/Minusstunden</dt>
+        <dd id="res-diff">–</dd>
+      </div>
+    </dl>
+    <p id="res-msg" class="calc__msg"></p>
+    <p id="res-live" class="sr-only" role="status" aria-live="polite" aria-atomic="true"></p>
+  </div>
+
+  <noscript><p class="calc__msg">Für die Berechnung wird JavaScript benötigt. Die Berechnung erfolgt lokal in Ihrem Browser.</p></noscript>
+  <p class="calc__note">Die Berechnung erfolgt lokal in Ihrem Browser; Eingaben werden nicht gespeichert. Der Rechner gibt eine allgemeine Orientierung und ersetzt keine Prüfung von Arbeitsvertrag oder Tarifvertrag. Gesetzliche Mindestpausen regelt <a href="https://www.gesetze-im-internet.de/arbzg/__4.html" rel="noopener">§ 4 ArbZG</a>.</p>
+</section>

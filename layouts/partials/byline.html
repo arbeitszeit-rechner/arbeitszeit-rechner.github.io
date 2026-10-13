@@ -1,0 +1,8 @@
+{{- if .Params.show_author -}}
+{{- $a := site.Data.author -}}
+<p class="byline">
+  Von <span>{{ with $a.name }}{{ . }}{{ else }}Redaktion {{ site.Title }}{{ end }}</span>
+  {{- if not .Lastmod.IsZero }} · Zuletzt aktualisiert: <time datetime="{{ .Lastmod.Format "2006-01-02" }}">{{ .Lastmod | time.Format ":date_long" }}</time>{{ end }}
+  {{- with site.GetPage "/ueber-uns" }} · <a href="{{ .RelPermalink }}#redaktion">Redaktionelle Grundsätze</a>{{ end }}
+</p>
+{{- end -}}
